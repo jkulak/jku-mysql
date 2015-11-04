@@ -2,9 +2,9 @@ name             'jku-mysql'
 maintainer       'Jakub Kułak'
 maintainer_email 'jakub.kulak@gmail.com'
 license          'Apache 2.0'
-description      'Installs/Configures jku-mysql'
+description      'Installs/Configures mysql using community mysql cook'
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
-version          '0.1.0'
+version          '0.1.1'
 
 depends 'mysql2_chef_gem', '~> 1.0.2'
 depends 'database', '~> 4.0.9'
