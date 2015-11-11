@@ -24,7 +24,7 @@ mysql2_chef_gem 'default' do
 end
 
 # Create a mysql_services
-node['jku-mysql']['mysql'].each do |server_data|
+node['jku-mysql']['server'].each do |server_data|
 
     name = server_data[0]
     server = server_data[1]
@@ -66,16 +66,4 @@ node['jku-mysql']['mysql'].each do |server_data|
       privileges    [:select, :insert, :update, :delete, :create, :drop, :index, :alter]
       action        :grant
     end
-
-    # Copy dump file
-    cookbook_file "/tmp/#{server['db_dump']}" do
-        mode 00755
-    end
-
-    # Import an sql dump
-    execute 'import' do
-      command "mysql -h 127.0.0.1 -u root -p#{server['root_password']} #{server['db_name']} < /tmp/#{server['db_dump']}"
-      action :run
-    end
-
 end
